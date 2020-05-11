@@ -22,7 +22,6 @@ def get_median(arr1,arr2):
         arr3[k] = arr2[j]
         j = j + 1
         k = k + 1
-        pass
 
     #if len(arr3) is add
     print(arr3)
@@ -33,10 +32,10 @@ def get_median(arr1,arr2):
         median = (arr3[mid] + arr3[mid - 1])/2
     return median
 
-result = get_median(arr1,arr2)
-print(result)
+# result = get_median(arr1,arr2)
+# print(result)
 
-(min(arr1[1],arr2[1]) + max(arr1[0], arr2[0]))/2
+#(min(arr1[1],arr2[1]) + max(arr1[0], arr2[0]))/2
 
 #arr1 = [15]
 #arr2 = [17]
@@ -50,50 +49,92 @@ def median(arr):
         return (arr[mid] + arr[mid-1])/2
 
 def get_median_v2(arr1,arr2):
-    if len(arr1) == 1 and len(arr2) == 1:
+    if n ==1:
         return (arr1[0] + arr2[0])/2
-    if len(arr1) == 2 and len(arr2) == 2:
+    if n ==2:
         return (min(arr1[1], arr2[1]) + max(arr1[0], arr2[0]))/2
+
     m1 = median(arr1)
     m2 = median(arr2)
 
-    if m1 < m2:
-        #second half of arr1
-        #first half of arr2
-        #get the mid element of array:
-        #  odd,len //2
-        #  even,len //2
-        #arr1 = [1,12,15,26,38,40]#3
-        #arr1 = [1,12,15,26,38]#2
-        new_arr1 = arr1[len(arr1)//2:]
-        new_arr2 = arr2[:(len(arr2)//2) + 1]
-        return get_median_v2(new_arr1,new_arr2)
-    else:
-        #second half of arr2
-        #first half of arr1
-        new_arr1 = arr1[:(len(arr1) // 2) + 1]
-        new_arr2 = arr2[len(arr2) // 2:]
-        return get_median_v2(new_arr1, new_arr2)
+    if m1 > m2:
 
-# arr1 = [1,12,15,26,38] #15
-# arr2 = [2,13,17,30,45] # 17
-#
+        if n %2 ==0:
+            #n =6
+            #0:4(0,1,2,3),2:6(2,3,4,5)
+            return get_median_v2(arr1[:(n//2) + 1], arr2[(n//2)-1:], (n//2)+1)
+        else: #m1 < m2
+            #n=5,n/2=2,0.3(0,1,2)
+            #2:5 (2,3,4)
+            return  get_median_v2(arr1[:(n//2)+1], arr2[(n//2):], (n//2)+1)
+
+    else:
+        if n % 2 ==0:
+            return get_median_v2(arr1[(n//2-1):], arr2[:(n//2+1)], (n//2)+1)
+        else:
+            return get_median_v2(arr1[(n//2):], arr2[:(n//2)+1], (n//2)+1)
+
+arr1 = [1,12,15,26,38] # 15
+arr2 = [2,13,17,30,45] # 17
+
+# arr1 = [1,12,15,26,38,65] #(15+25)/2
+# arr2 = [2,13,17,30,45,98] #17
+
 # arr1 = [1,2,3,4] #15
 # arr2 = [5,6,7,8] #17
 
-m1=15
-m2=17
+#m1=15
+#m2=17
 
-if m2 > m1:
-    pass
+# if m2 > m1:
+#     pass
 
 # first half of arr2
 # second half of arr1
 
-arr1 = [15,26,38] #26
-arr2 = [2,13,17] #13
+# arr1 = [15,26,38] #26
+# arr2 = [2,13,17] #13
+#
+# arr1 = [15,26] #20.5
+# arr2 = [13,17] #15
 
-arr1 = [15,26] #20.5
-arr2 = [13,17] #15
-result = get_median_v2(arr1,arr2)
+result = get_median(arr1,arr2)
 print(result)
+
+n = len(arr1)
+
+result = get_median_v2(arr1,arr2,n)
+print(result)
+
+#arr1 = [1,12,15,25,38,65] #20
+#arr2 = [2,13,17,30,45,98] #25
+
+#[25,38,65]
+#[2,13,17]
+
+# arr1 =[15,25,38,65] #31.5
+# arr2 = [2,13,17,33] #15
+#
+# arr1 = [15,25,38] #25
+# arr2 = [13,17,33] #17
+#
+# arr1 = [15,25] #15
+# arr2 = [17,33] #17
+
+arr1 = [1,12,15,26,38] #15
+arr2 = [2,13,17,30,45] #17
+
+def get_median_v3(arr1,arr2):
+
+    pass
+
+#i = 0
+#j = 0
+#total_elements = 10
+#count = 0
+#4,5
+
+#total_elements//2 #5 +1
+
+#i =1, j =0, count=1
+#j =1, i =1, count=2
